@@ -1,8 +1,14 @@
-export function LostItemsNew() {
+export function LostItemsNew(props) {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const params = new FormData(event.target);
+    props.onCreateLostItem(params, () => event.target.reset());
+  };
+
   return (
     <div>
       <h1>Missing something? Add your item here!</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div>
           Name: <input name="name" type="text" />
         </div>

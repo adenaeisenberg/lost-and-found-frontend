@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+
 export function FoundItemsIndex(props) {
   return (
     <div>
@@ -8,7 +10,7 @@ export function FoundItemsIndex(props) {
           <img src={foundItem.image_url} width="300" />
           <p>Location: {foundItem.location}</p>
           <p>Date Found: {foundItem.date}</p>
-          {/* <button onClick={() => props.onShowFoundItem(foundItem)}>More info</button> */}
+          <button onClick={() => props.onShowFoundItem(foundItem)}>More info</button>
         </div>
       ))}
     </div>

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 export function FoundItemsNew(props) {
   const handleSubmit = (event) => {
     event.preventDefault();

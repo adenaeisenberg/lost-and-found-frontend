@@ -5,6 +5,7 @@ import { LostItemsNew } from "./LostItemsNew";
 import { LostItemsShow } from "./LostItemsShow";
 import { FoundItemsIndex } from "./FoundItemsIndex";
 import { FoundItemsNew } from "./FoundItemsNew";
+import { FoundItemsShow } from "./FoundItemsShow";
 import { Modal } from "./Modal";
 
 export function Content() {
@@ -12,6 +13,9 @@ export function Content() {
   const [foundItems, setFoundItems] = useState([]);
   const [isLostItemsShowVisible, setIsLostItemsShowVisible] = useState(false);
   const [currentLostItem, setCurrentLostItem] = useState({});
+
+  const [isFoundItemsShowVisible, setIsFoundItemsShowVisible] = useState(false);
+  const [currentFoundItem, setCurrentFoundItem] = useState({});
 
   const handleIndexLostItems = () => {
     console.log("handleIndexLostItems");
@@ -50,9 +54,20 @@ export function Content() {
     setCurrentLostItem(lostItem);
   };
 
-  const handleClose = () => {
-    console.log("handleClose");
+  const handleLostItemClose = () => {
+    console.log("handleLostItemClose");
     setIsLostItemsShowVisible(false);
+  };
+
+  const handleShowFoundItem = (foundItem) => {
+    console.log("handleShowFoundItem", foundItem);
+    setIsFoundItemsShowVisible(true);
+    setCurrentFoundItem(foundItem);
+  };
+
+  const handleFoundItemClose = () => {
+    console.log("handleFoundItemClose");
+    setIsFoundItemsShowVisible(false);
   };
 
   useEffect(handleIndexLostItems, []);
@@ -63,10 +78,13 @@ export function Content() {
       <h1>Lost&Found</h1>
       <LostItemsIndex lostItems={lostItems} onShowLostItem={handleShowLostItem} />
       <LostItemsNew onCreateLostItem={handleCreateLostItem} />
-      <Modal show={isLostItemsShowVisible} onClose={handleClose}>
+      <Modal show={isLostItemsShowVisible} onClose={handleLostItemClose}>
         <LostItemsShow lostItem={currentLostItem} />
       </Modal>
-      <FoundItemsIndex foundItems={foundItems} />
+      <FoundItemsIndex foundItems={foundItems} onShowFoundItem={handleShowFoundItem} />
+      <Modal show={isFoundItemsShowVisible} onClose={handleFoundItemClose}>
+        <FoundItemsShow foundItem={currentFoundItem} />
+      </Modal>
       <FoundItemsNew onCreateFoundItem={handleCreateFoundItem} />
     </div>
   );

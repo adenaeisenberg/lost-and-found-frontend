@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+
 export function LostItemsShow(props) {
   return (
     <div>

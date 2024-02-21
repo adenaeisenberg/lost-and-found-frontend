@@ -4,6 +4,7 @@ import { LostItemsIndex } from "./LostItemsIndex";
 import { LostItemsNew } from "./LostItemsNew";
 import { LostItemsShow } from "./LostItemsShow";
 import { FoundItemsIndex } from "./FoundItemsIndex";
+import { FoundItemsNew } from "./FoundItemsNew";
 import { Modal } from "./Modal";
 
 export function Content() {
@@ -35,6 +36,13 @@ export function Content() {
       successCallback();
     });
   };
+  const handleCreateFoundItem = (params, successCallback) => {
+    console.log("handleCreateFoundItem", params);
+    axios.post("http://localhost:3000/found_items.json", params).then((response) => {
+      setFoundItems([...lostItems, response.data]);
+      successCallback();
+    });
+  };
 
   const handleShowLostItem = (lostItem) => {
     console.log("handleShowLostItem", lostItem);
@@ -59,6 +67,7 @@ export function Content() {
         <LostItemsShow lostItem={currentLostItem} />
       </Modal>
       <FoundItemsIndex foundItems={foundItems} />
+      <FoundItemsNew onCreateFoundItem={handleCreateFoundItem} />
     </div>
   );
 }

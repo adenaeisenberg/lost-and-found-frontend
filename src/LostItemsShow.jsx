@@ -3,7 +3,7 @@ export function LostItemsShow(props) {
     <div>
       <h1>Lost Item information</h1>
       <p>Name: {props.lostItem.name}</p>
-      <p>Url: {props.lostItem.image_url}</p>
+      <img src={props.lostItem.image_url} width="500"></img>
       <p>Last Seen: {props.lostItem.last_seen}</p>
     </div>
   );

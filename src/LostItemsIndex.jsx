@@ -6,7 +6,7 @@ export function LostItemsIndex(props) {
       {props.lostItems.map((lostItem) => (
         <div key={lostItem.id}>
           <h2>{lostItem.name}</h2>
-          <img src={lostItem.image_url} />
+          <img src={lostItem.image_url} width="300" />
           <p>Last Seen: {lostItem.last_seen}</p>
           <button onClick={() => props.onShowLostItem(lostItem)}>More info</button>
         </div>

@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+
 export function LostItemsNew(props) {
   const handleSubmit = (event) => {
     event.preventDefault();

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 export function LostItemsIndex(props) {
   return (
     <div>
@@ -7,6 +8,7 @@ export function LostItemsIndex(props) {
           <h2>{lostItem.name}</h2>
           <img src={lostItem.image_url} />
           <p>Last Seen: {lostItem.last_seen}</p>
+          <button onClick={() => props.onShowLostItem(lostItem)}>More info</button>
         </div>
       ))}
     </div>

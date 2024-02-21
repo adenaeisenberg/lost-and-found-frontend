@@ -3,10 +3,12 @@ import { useState, useEffect } from "react";
 import { LostItemsIndex } from "./LostItemsIndex";
 import { LostItemsNew } from "./LostItemsNew";
 import { LostItemsShow } from "./LostItemsShow";
+import { FoundItemsIndex } from "./FoundItemsIndex";
 import { Modal } from "./Modal";
 
 export function Content() {
   const [lostItems, setLostItems] = useState([]);
+  const [foundItems, setFoundItems] = useState([]);
   const [isLostItemsShowVisible, setIsLostItemsShowVisible] = useState(false);
   const [currentLostItem, setCurrentLostItem] = useState({});
 
@@ -15,6 +17,14 @@ export function Content() {
     axios.get("http://localhost:3000/lost_items.json").then((response) => {
       console.log(response.data);
       setLostItems(response.data);
+    });
+  };
+
+  const handleIndexFoundItems = () => {
+    console.log("handleIndexFoundItems");
+    axios.get("http://localhost:3000/found_items.json").then((response) => {
+      console.log(response.data);
+      setFoundItems(response.data);
     });
   };
 
@@ -38,6 +48,7 @@ export function Content() {
   };
 
   useEffect(handleIndexLostItems, []);
+  useEffect(handleIndexFoundItems, []);
 
   return (
     <div>
@@ -47,6 +58,7 @@ export function Content() {
       <Modal show={isLostItemsShowVisible} onClose={handleClose}>
         <LostItemsShow lostItem={currentLostItem} />
       </Modal>
+      <FoundItemsIndex foundItems={foundItems} />
     </div>
   );
 }

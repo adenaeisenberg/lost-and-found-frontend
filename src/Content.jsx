@@ -7,6 +7,9 @@ import { FoundItemsIndex } from "./FoundItemsIndex";
 import { FoundItemsNew } from "./FoundItemsNew";
 import { FoundItemsShow } from "./FoundItemsShow";
 import { Modal } from "./Modal";
+import { Login } from "./Login";
+import { Signup } from "./Signup";
+import { LogoutLink } from "./LogoutLink";
 
 export function Content() {
   const [lostItems, setLostItems] = useState([]);
@@ -76,6 +79,9 @@ export function Content() {
   return (
     <div>
       <h1>Lost&Found</h1>
+      <Signup />
+      <Login />
+      <LogoutLink />
       <LostItemsIndex lostItems={lostItems} onShowLostItem={handleShowLostItem} />
       <LostItemsNew onCreateLostItem={handleCreateLostItem} />
       <Modal show={isLostItemsShowVisible} onClose={handleLostItemClose}>

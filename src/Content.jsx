@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { LostItemsIndex } from "./LostItemsIndex";
-import { LostItemsNew } from "./LostItemsNew";
 import { LostItemsShow } from "./LostItemsShow";
 import { FoundItemsIndex } from "./FoundItemsIndex";
 import { FoundItemsShow } from "./FoundItemsShow";
@@ -71,7 +70,12 @@ export function Content() {
         <Route
           path="/lostitems"
           element={
-            <LostItemsIndex lostItems={lostItems} onShowLostItem={handleShowLostItem} setLostItems={setLostItems} />
+            <>
+              <LostItemsIndex lostItems={lostItems} onShowLostItem={handleShowLostItem} setLostItems={setLostItems} />
+              <Modal show={isLostItemsShowVisible} onClose={handleLostItemClose}>
+                <LostItemsShow lostItem={currentLostItem} />
+              </Modal>
+            </>
           }
         />
         <Route
@@ -86,10 +90,6 @@ export function Content() {
         />
       </Routes>
       <LogoutLink />
-
-      <Modal show={isLostItemsShowVisible} onClose={handleLostItemClose}>
-        <LostItemsShow lostItem={currentLostItem} />
-      </Modal>
 
       <Modal show={isFoundItemsShowVisible} onClose={handleFoundItemClose}>
         <FoundItemsShow foundItem={currentFoundItem} />

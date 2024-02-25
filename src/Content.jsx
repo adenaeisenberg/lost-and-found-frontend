@@ -7,9 +7,9 @@ import { FoundItemsShow } from "./FoundItemsShow";
 import { Modal } from "./Modal";
 import { Login } from "./Login";
 import { Signup } from "./Signup";
-import { LogoutLink } from "./LogoutLink";
+// import { LogoutLink } from "./LogoutLink";
 import { Routes, Route } from "react-router-dom";
-// import { Home } from "./Home";
+import { Home } from "./Home";
 
 export function Content() {
   const [lostItems, setLostItems] = useState([]);
@@ -63,8 +63,9 @@ export function Content() {
 
   return (
     <div className="container">
-      <h1>Lost&Found</h1>
+      {/* <h1>Lost&Found</h1> */}
       <Routes>
+        <Route path="/home" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route
@@ -81,19 +82,21 @@ export function Content() {
         <Route
           path="/founditems"
           element={
-            <FoundItemsIndex
-              foundItems={foundItems}
-              onShowFoundItem={handleShowFoundItem}
-              setFoundItems={setFoundItems}
-            />
+            <>
+              <FoundItemsIndex
+                foundItems={foundItems}
+                onShowFoundItem={handleShowFoundItem}
+                setFoundItems={setFoundItems}
+              />
+              <Modal show={isFoundItemsShowVisible} onClose={handleFoundItemClose}>
+                <FoundItemsShow foundItem={currentFoundItem} />
+              </Modal>
+            </>
           }
         />
       </Routes>
-      <LogoutLink />
 
-      <Modal show={isFoundItemsShowVisible} onClose={handleFoundItemClose}>
-        <FoundItemsShow foundItem={currentFoundItem} />
-      </Modal>
+      {/* <LogoutLink /> */}
     </div>
   );
 }

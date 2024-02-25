@@ -10,6 +10,7 @@ import { Modal } from "./Modal";
 import { Login } from "./Login";
 import { Signup } from "./Signup";
 import { LogoutLink } from "./LogoutLink";
+import { Routes, Route } from "react-router-dom";
 
 export function Content() {
   const [lostItems, setLostItems] = useState([]);
@@ -77,9 +78,13 @@ export function Content() {
   useEffect(handleIndexFoundItems, []);
 
   return (
-    <div>
+    <div className="container">
       <h1>Lost&Found</h1>
-      <Signup />
+      <Routes>
+        <Route path="/signup" element={<Signup />} />
+      </Routes>
+
+      {/* <Signup /> */}
       <Login />
       <LogoutLink />
       <LostItemsIndex lostItems={lostItems} onShowLostItem={handleShowLostItem} />

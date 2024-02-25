@@ -11,6 +11,7 @@ import { Login } from "./Login";
 import { Signup } from "./Signup";
 import { LogoutLink } from "./LogoutLink";
 import { Routes, Route } from "react-router-dom";
+// import { Home } from "./Home";
 
 export function Content() {
   const [lostItems, setLostItems] = useState([]);
@@ -82,17 +83,24 @@ export function Content() {
       <h1>Lost&Found</h1>
       <Routes>
         <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+        <Route
+          path="/lostitems"
+          element={<LostItemsIndex lostItems={lostItems} onShowLostItem={handleShowLostItem} />}
+        />
+        <Route
+          path="/founditems"
+          element={<FoundItemsIndex foundItems={foundItems} onShowFoundItem={handleShowFoundItem} />}
+        />
       </Routes>
-
-      {/* <Signup /> */}
-      <Login />
       <LogoutLink />
-      <LostItemsIndex lostItems={lostItems} onShowLostItem={handleShowLostItem} />
+
       <LostItemsNew onCreateLostItem={handleCreateLostItem} />
+
       <Modal show={isLostItemsShowVisible} onClose={handleLostItemClose}>
         <LostItemsShow lostItem={currentLostItem} />
       </Modal>
-      <FoundItemsIndex foundItems={foundItems} onShowFoundItem={handleShowFoundItem} />
+
       <Modal show={isFoundItemsShowVisible} onClose={handleFoundItemClose}>
         <FoundItemsShow foundItem={currentFoundItem} />
       </Modal>

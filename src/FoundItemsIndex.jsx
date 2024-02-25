@@ -1,6 +1,17 @@
 /* eslint-disable react/prop-types */
 
+import { FoundItemsNew } from "./FoundItemsNew";
+import axios from "axios";
+
 export function FoundItemsIndex(props) {
+  const handleCreateFoundItem = (params, successCallback) => {
+    console.log("handleCreateFoundItem", params);
+    axios.post("http://localhost:3000/found_items.json", params).then((response) => {
+      props.setFoundItems([...props.foundItems, response.data]);
+      successCallback();
+    });
+  };
+
   return (
     <div>
       <h1>All Found Items</h1>
@@ -13,6 +24,7 @@ export function FoundItemsIndex(props) {
           <button onClick={() => props.onShowFoundItem(foundItem)}>More info</button>
         </div>
       ))}
+      <FoundItemsNew onCreateFoundItem={handleCreateFoundItem} />
     </div>
   );
 }

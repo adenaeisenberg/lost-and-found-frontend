@@ -4,7 +4,7 @@ import { LostItemsIndex } from "./LostItemsIndex";
 import { LostItemsNew } from "./LostItemsNew";
 import { LostItemsShow } from "./LostItemsShow";
 import { FoundItemsIndex } from "./FoundItemsIndex";
-import { FoundItemsNew } from "./FoundItemsNew";
+// import { FoundItemsNew } from "./FoundItemsNew";
 import { FoundItemsShow } from "./FoundItemsShow";
 import { Modal } from "./Modal";
 import { Login } from "./Login";
@@ -45,13 +45,13 @@ export function Content() {
       successCallback();
     });
   };
-  const handleCreateFoundItem = (params, successCallback) => {
-    console.log("handleCreateFoundItem", params);
-    axios.post("http://localhost:3000/found_items.json", params).then((response) => {
-      setFoundItems([...lostItems, response.data]);
-      successCallback();
-    });
-  };
+  // const handleCreateFoundItem = (params, successCallback) => {
+  //   console.log("handleCreateFoundItem", params);
+  //   axios.post("http://localhost:3000/found_items.json", params).then((response) => {
+  //     setFoundItems([...lostItems, response.data]);
+  //     successCallback();
+  //   });
+  // };
 
   const handleShowLostItem = (lostItem) => {
     console.log("handleShowLostItem", lostItem);
@@ -90,7 +90,14 @@ export function Content() {
         />
         <Route
           path="/founditems"
-          element={<FoundItemsIndex foundItems={foundItems} onShowFoundItem={handleShowFoundItem} />}
+          element={
+            <FoundItemsIndex
+              foundItems={foundItems}
+              onShowFoundItem={handleShowFoundItem}
+              setFoundItems={setFoundItems}
+              // onCreateFoundItem={handleCreateFoundItem}
+            />
+          }
         />
       </Routes>
       <LogoutLink />
@@ -104,7 +111,8 @@ export function Content() {
       <Modal show={isFoundItemsShowVisible} onClose={handleFoundItemClose}>
         <FoundItemsShow foundItem={currentFoundItem} />
       </Modal>
-      <FoundItemsNew onCreateFoundItem={handleCreateFoundItem} />
+
+      {/* <FoundItemsNew onCreateFoundItem={handleCreateFoundItem} /> */}
     </div>
   );
 }

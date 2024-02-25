@@ -4,7 +4,6 @@ import { LostItemsIndex } from "./LostItemsIndex";
 import { LostItemsNew } from "./LostItemsNew";
 import { LostItemsShow } from "./LostItemsShow";
 import { FoundItemsIndex } from "./FoundItemsIndex";
-// import { FoundItemsNew } from "./FoundItemsNew";
 import { FoundItemsShow } from "./FoundItemsShow";
 import { Modal } from "./Modal";
 import { Login } from "./Login";
@@ -37,21 +36,6 @@ export function Content() {
       setFoundItems(response.data);
     });
   };
-
-  const handleCreateLostItem = (params, successCallback) => {
-    console.log("handleCreateLostItem", params);
-    axios.post("http://localhost:3000/lost_items.json", params).then((response) => {
-      setLostItems([...lostItems, response.data]);
-      successCallback();
-    });
-  };
-  // const handleCreateFoundItem = (params, successCallback) => {
-  //   console.log("handleCreateFoundItem", params);
-  //   axios.post("http://localhost:3000/found_items.json", params).then((response) => {
-  //     setFoundItems([...lostItems, response.data]);
-  //     successCallback();
-  //   });
-  // };
 
   const handleShowLostItem = (lostItem) => {
     console.log("handleShowLostItem", lostItem);
@@ -86,7 +70,9 @@ export function Content() {
         <Route path="/login" element={<Login />} />
         <Route
           path="/lostitems"
-          element={<LostItemsIndex lostItems={lostItems} onShowLostItem={handleShowLostItem} />}
+          element={
+            <LostItemsIndex lostItems={lostItems} onShowLostItem={handleShowLostItem} setLostItems={setLostItems} />
+          }
         />
         <Route
           path="/founditems"
@@ -95,14 +81,11 @@ export function Content() {
               foundItems={foundItems}
               onShowFoundItem={handleShowFoundItem}
               setFoundItems={setFoundItems}
-              // onCreateFoundItem={handleCreateFoundItem}
             />
           }
         />
       </Routes>
       <LogoutLink />
-
-      <LostItemsNew onCreateLostItem={handleCreateLostItem} />
 
       <Modal show={isLostItemsShowVisible} onClose={handleLostItemClose}>
         <LostItemsShow lostItem={currentLostItem} />
@@ -111,8 +94,6 @@ export function Content() {
       <Modal show={isFoundItemsShowVisible} onClose={handleFoundItemClose}>
         <FoundItemsShow foundItem={currentFoundItem} />
       </Modal>
-
-      {/* <FoundItemsNew onCreateFoundItem={handleCreateFoundItem} /> */}
     </div>
   );
 }

@@ -62,7 +62,8 @@ export function Content() {
   useEffect(handleIndexFoundItems, []);
 
   return (
-    <div className="container">
+    // <div className="container">
+    <div>
       {/* <h1>Lost&Found</h1> */}
       <Routes>
         <Route path="/home" element={<Home />} />

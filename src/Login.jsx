@@ -21,7 +21,7 @@ export function Login() {
         axios.defaults.headers.common["Authorization"] = "Bearer " + response.data.jwt;
         localStorage.setItem("jwt", response.data.jwt);
         event.target.reset();
-        window.location.href = "/"; // Change this to hide a modal, redirect to a specific page, etc.
+        window.location.href = "/home"; // Change this to hide a modal, redirect to a specific page, etc.
       })
       .catch((error) => {
         console.log(error.response);
@@ -47,9 +47,9 @@ export function Login() {
         <button type="submit">Login</button>
       </form>
       <br />
-      <p>
+      <em>
         New to Lost&Found? Click <Link to={`/signup`}>here</Link> to create an account
-      </p>
+      </em>
     </div>
   );
 }

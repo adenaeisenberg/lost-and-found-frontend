@@ -1,5 +1,6 @@
 // import { Link } from "react-router-dom";
 import "./Home.css";
+import { LogoutLink } from "./LogoutLink";
 
 // CODE IS FROM https://codepen.io/designfenix/pen/jOLYpNK
 
@@ -127,7 +128,7 @@ export function Home() {
           <img src="/src/assets/Lost-&-Found-Logo.png" alt="Lost & Found Logo" />
         </div>
         <nav className="menu">
-          <a href="/login">Login</a>
+          {localStorage.jwt === undefined ? <a href="/login">Login</a> : <LogoutLink />}
           <a href="/lostitems">List a Lost Item</a>
           <a href="/founditems">Browse Found Items</a>
         </nav>

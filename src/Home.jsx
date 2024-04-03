@@ -129,8 +129,8 @@ export function Home() {
         </div>
         <nav className="menu">
           {localStorage.jwt === undefined ? <a href="/login">Login</a> : <LogoutLink />}
-          <a href="/lostitems">List a Lost Item</a>
-          <a href="/founditems">Browse Found Items</a>
+          <a href="/lostitems">Browse or List a Lost Item</a>
+          <a href="/founditems">Browse or List Found Items</a>
         </nav>
       </div>
     </>

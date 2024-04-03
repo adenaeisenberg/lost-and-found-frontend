@@ -6,7 +6,7 @@ export function FoundItemsShow(props) {
       <h1>Found Item information</h1>
       <p>Name: {props.foundItem.name}</p>
       <img src={props.foundItem.image_url} width="500"></img>
-      <p>Last Seen: {props.foundItem.location}</p>
+      <p>Location Found: {props.foundItem.location}</p>
       <p>Found On: {props.foundItem.date}</p>
     </div>
   );

@@ -15,20 +15,24 @@ export function FoundItemsIndex(props) {
   return (
     <div>
       <h1>All Found Items</h1>
-      <div>
-        {props.foundItems.map((foundItem) => (
-          <div key={foundItem.id} className="card" width="18rem">
-            <img className="card-img-top" src={foundItem.image_url} alt="Card image cap" width="30" />
-            <div className="card-body">
-              <h5 className="card-title">Card title: {foundItem.name} </h5>
-              <p className="card-text">Location: {foundItem.location}</p>
-              <p className="card-text">Date Found: {foundItem.date}</p>
-              <button className="btn btn-primary" onClick={() => props.onShowFoundItem(foundItem)}>
-                More info
-              </button>
+      <div className="card-deck">
+        <div>
+          {props.foundItems.map((foundItem) => (
+            <div key={foundItem.id} className="card">
+              <img src={foundItem.image_url} alt="Card image cap" width="300" />
+              {/* <img className="card-img-top" src={foundItem.image_url} alt="Card image cap" width="30" /> */}
+
+              <div className="card-body">
+                <h5 className="card-title">Card title: {foundItem.name} </h5>
+                <p className="card-text">Location: {foundItem.location}</p>
+                <p className="card-text">Date Found: {foundItem.date}</p>
+                <button className="btn btn-primary" onClick={() => props.onShowFoundItem(foundItem)}>
+                  More info
+                </button>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
       ;
       <FoundItemsNew onCreateFoundItem={handleCreateFoundItem} />

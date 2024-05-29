@@ -10,6 +10,7 @@ import { Signup } from "./Signup";
 // import { LogoutLink } from "./LogoutLink";
 import { Routes, Route } from "react-router-dom";
 import { Home } from "./Home";
+// import { TestingCard } from "./TestingCard";
 
 export function Content() {
   const [lostItems, setLostItems] = useState([]);
@@ -65,6 +66,7 @@ export function Content() {
     // <div className="container">
     <div>
       {/* <h1>Lost&Found</h1> */}
+      {/* <TestingCard /> */}
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
